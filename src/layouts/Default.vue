@@ -25,11 +25,15 @@
         </div>
 
         <transition name="slidedown">
-          <main class="layout__content" v-if="!isHome">
-            <simplebar data-simplebar-auto-hide="false" class="simplebar-element">
+          <simplebar
+            data-simplebar-auto-hide="false"
+            class="layout__content simplebar-element"
+            v-if="!isHome"
+          >
+            <main>
               <router-view />
-            </simplebar>
-          </main>
+            </main>
+          </simplebar>
         </transition>
       </div>
     </div>
@@ -41,7 +45,6 @@ import ResizeObserver from "@juggle/resize-observer";
 import Logo from "~/assets/svgs/Logo.svg";
 import Hamburger from "~/assets/svgs/Hamburger.svg";
 import simplebar from "simplebar-vue";
-import "simplebar/dist/simplebar.min.css";
 
 export default {
   components: {
@@ -97,7 +100,7 @@ export default {
   }
 </static-query>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../styles/abstract";
 
 .layout {
@@ -225,21 +228,11 @@ export default {
   border-radius: $rounded-sm;
   margin: 0;
   background: white;
+  height: 100%;
 
   @include md-up($screen-sm) {
     margin: $sp-4;
-  }
-}
-
-.simplebar-element {
-  height: 100%;
-
-  .simplebar-scrollbar {
-    width: 5px;
-    &::before {
-      background: linear-gradient(to top, #d53f8c, #553c9a);
-      opacity: 0.7 !important;
-    }
+    height: calc(100% - #{$sp-4 * 2}) !important;
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full p-20 pt-24">
+  <div class="projects-page">
     <h1 class="font-serif font-medium text-4xl text-gray-800 text-center">
       Some of the things I do
       <div>
@@ -33,6 +33,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../styles/abstract';
+
+.projects-page {
+  padding: $sp-20;
+  padding-top: $sp-24;
+}
+
 .project-description {
   position: absolute;
   bottom: 100%;
@@ -47,7 +54,6 @@ export default {
     transform: translate3d(0, -50%, 0);
     left: 30px;
     right: -90px;
-
   }
 }
 </style>

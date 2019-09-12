@@ -1,0 +1,13 @@
+@import './abstract';
+
+.simplebar-element {
+	height: 100%;
+
+	.simplebar-scrollbar {
+			width: 5px;
+			&::before {
+			background: linear-gradient(to top, #d53f8c, #553c9a);
+			opacity: 0.7 !important;
+			}
+	}
+}
