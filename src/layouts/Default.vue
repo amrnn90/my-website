@@ -1,40 +1,90 @@
 <template>
-  <div class="text-base text-gray-800 font-sans antialiased background bg-cover">
-    <div class="relative">
-      <header class="absolute left-0 right-0 max-w-6xl mx-auto py-8">
-        <div class="">
-          <Logo />
-        </div>
-      </header>
+  <div class="layout" :class="{'open-nav': navOpened, 'is-home': isHome}">
+    <header class="layout__header">
+      <g-link to="/">
+        <Logo class="logo" @click="closeNavIfMobile" />
+      </g-link>
 
-      <div class="max-w-6xl mx-auto h-full flex items-center h-screen">
-        <div class="w-10/12">
-          <h1
-            class="text-white font-bold uppercase text-center"
-            style="font-size: 90px; letter-spacing: 10px"
-          >Amr Noman</h1>
-          <h3 class="text-center text-gray-100 font-light text-lg uppercase tracking-widest">&lt;/ Fullstack Web Developer &gt;</h3>
+      <div class="relative">
+        <Hamburger class="nav-toggle" @click.stop.prevent="toggleNav" role="button" />
+        <div class="layout__menu">
+          <nav>
+            <a href="/projects" class="layout__menu-item" @click="closeNavIfMobile">My Work</a>
+            <a href="/about" class="layout__menu-item" @click="closeNavIfMobile">About Me</a>
+            <a href="#" class="layout__menu-item" @click="closeNavIfMobile">Contact</a>
+          </nav>
         </div>
-        <aside class="w-2/12 pl-8">
-          <a href="#" class="block uppercase text-gray-300 text-lg tracking-widest my-8">My Work</a>
-          <a href="#" class="block uppercase text-gray-300 text-lg tracking-widest my-8">About Me</a>
-          <a href="#" class="block uppercase text-gray-300 text-lg tracking-widest my-8">Contact</a>
-        </aside>
       </div>
+    </header>
 
-      <transition name="fade">
-        <router-view v-if="$route.path != '/'" />
-      </transition>
+    <div class="layout__content-wrapper">
+      <div class="layout__content-wrapper-inner">
+        <div>
+          <h1 class="layout__heading">Amr Noman</h1>
+          <h2 class="layout__subheading">&lt;/ Fullstack Web Developer &gt;</h2>
+        </div>
+
+        <transition name="slidedown">
+          <main class="layout__content" v-if="!isHome">
+            <simplebar data-simplebar-auto-hide="false" class="simplebar-element">
+              <router-view />
+            </simplebar>
+          </main>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import ResizeObserver from "@juggle/resize-observer";
 import Logo from "~/assets/svgs/Logo.svg";
+import Hamburger from "~/assets/svgs/Hamburger.svg";
+import simplebar from "simplebar-vue";
+import "simplebar/dist/simplebar.min.css";
 
 export default {
   components: {
-    Logo
+    Logo,
+    Hamburger,
+    simplebar
+  },
+  data() {
+    return {
+      navOpened: true
+    };
+  },
+  methods: {
+    toggleNav() {
+      this.navOpened = !this.navOpened;
+    },
+    closeNav() {
+      this.navOpened = false;
+    },
+    closeNavIfMobile() {
+      if (document.body.clientWidth < 940) {
+        this.closeNav();
+      }
+    }
+  },
+  computed: {
+    isHome() {
+      return this.$route.path == "/";
+    }
+  },
+  watch: {
+    "$route.path": {
+      handler() {
+        this.closeNavIfMobile();
+      }
+    }
+  },
+  mounted() {
+    this.ro = new ResizeObserver(this.closeNavIfMobile);
+    this.ro.observe(document.body);
+  },
+  destroyed() {
+    this.ro.disconnect();
   }
 };
 </script>
@@ -48,12 +98,21 @@ export default {
 </static-query>
 
 <style lang="scss">
-.background {
-  background-image: url("..//assets/Background.jpg");
+@import "../styles/abstract";
+
+.layout {
   position: relative;
+  font-size: $fz-base;
+  color: $gray-800;
+  font-family: $sans;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+
+  background: url("..//assets/Background.jpg");
+  background-position: center;
+  background-size: cover;
   &::before {
-    background-color: rgba(#120519, 0.72);
-    background-position: center;
+    background: rgba(#120519, 0.72);
     position: absolute;
     left: 0;
     top: 0;
@@ -63,18 +122,173 @@ export default {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition-property: opacity;
-  transition-duration: 0.5s;
+.layout__header {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  @include py($sp-10, $sp-5);
+  @include px($sp-16, $sp-8);
 }
 
-.fade-enter-active {
-  transition-delay: 0.5s;
+.logo,
+.nav-toggle {
+  @include w($sp-16, $sp-10);
+  z-index: 1000;
+  position: relative;
+  cursor: pointer;
 }
 
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
+.logo > .letter-a,
+.nav-toggle > * {
+  transition: 0.3s all ease-in-out;
+  fill: $gray-800;
+}
+
+.layout__menu,
+.layout__content-wrapper {
+  transition: all 0.3s ease-in-out;
+}
+
+.layout__menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  left: 100%;
+  font-size: $fz-xl;
+  width: 100%;
+
+  @include md-up($screen-md) {
+    @include pr($sp-16, $sp-8);
+    @include fz($fz-lg, $fz-base, 1200px, $screen-md);
+    justify-content: flex-end;
+    text-align: right;
+    width: 17vw;
+  }
+}
+
+.layout__menu-item {
+  display: block;
+  text-transform: uppercase;
+  color: $gray-300;
+  letter-spacing: $tracking-widest;
+  margin: $sp-8 0;
+}
+
+.layout__content-wrapper {
+  height: 100vh;
+  width: 100%;
+  padding-right: 0;
+  z-index: 10;
+}
+
+.layout__content-wrapper-inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.layout__heading {
+  color: white;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: $tracking-widest;
+  text-align: center;
+  @include fz($fz-7xl, $fz-5xl);
+}
+
+.layout__subheading {
+  color: $gray-100;
+  font-weight: $fw-thin;
+  text-transform: uppercase;
+  letter-spacing: $tracking-widest;
+  text-align: center;
+  @include fz($fz-lg, $fz-sm);
+}
+
+.layout__content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-radius: $rounded-sm;
+  margin: 0;
+  background: white;
+
+  @include md-up($screen-sm) {
+    margin: $sp-4;
+  }
+}
+
+.simplebar-element {
+  height: 100%;
+
+  .simplebar-scrollbar {
+    width: 5px;
+    &::before {
+      background: linear-gradient(to top, #d53f8c, #553c9a);
+      opacity: 0.7 !important;
+    }
+  }
+}
+
+.open-nav {
+  .layout__content-wrapper {
+    transform: translate3d(-100%, 0, 0);
+    position: relative;
+    @include md-up($screen-md) {
+      transform: translate3d(0, 0, 0);
+      padding-right: 17vw;
+    }
+  }
+
+  .layout__menu {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  .nav-toggle > * {
+    fill: white !important;
+  }
+
+  .logo > .letter-a {
+    fill: white !important;
+
+    @include md-up($screen-md) {
+      fill: $gray-800 !important;
+    }
+  }
+}
+
+.is-home {
+  .nav-toggle > *,
+  .logo > .letter-a {
+    fill: white !important;
+  }
+}
+
+.slidedown-enter,
+.slidedown-leave-to {
+  transform: translate3d(0, -100%, 0);
+}
+
+.slidedown-leave,
+.slidedown-enter-to {
+  transform: translate3d(0, 0, 0);
+}
+
+.slidedown-enter-active,
+.slidedown-leave-active {
+  transition: all 0.5s ease-in-out;
 }
 </style>

@@ -1,9 +1,9 @@
-<svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg  viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="path-1-inside-1" fill="white">
 <rect width="53" height="53" rx="1.80645"/>
 </mask>
 <rect width="53" height="53" rx="1.80645" stroke="url(#paint0_linear)" stroke-width="8" stroke-linejoin="round" mask="url(#path-1-inside-1)"/>
-<path d="M32.3955 33.8871H17.2755L14.1458 41H9.95935L22.8439 12.5484H26.8677L39.7929 41H35.5252L32.3955 33.8871ZM30.9729 30.6355L24.8355 16.6942L18.6981 30.6355H30.9729Z" fill="white"/>
+<path class="letter-a" d="M33.3955 34.8871H18.2755L15.1458 42H10.9594L23.8439 13.5484H27.8677L40.7929 42H36.5252L33.3955 34.8871ZM31.9729 31.6355L25.8355 17.6942L19.6981 31.6355H31.9729Z" fill="white"/>
 <defs>
 <linearGradient id="paint0_linear" x1="-2.28032e-07" y1="4.73214" x2="48.0977" y2="57.049" gradientUnits="userSpaceOnUse">
 <stop stop-color="#D53F8C"/>
