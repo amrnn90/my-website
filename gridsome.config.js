@@ -7,9 +7,7 @@
 module.exports = {
   siteName: 'Gridsome',
   plugins: [
-    {
-      use: 'gridsome-plugin-tailwindcss',
-    }
+
   ],
   chainWebpack: config => {
     const svgRule = config.module.rule('svg')

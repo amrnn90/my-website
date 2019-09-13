@@ -1,23 +1,23 @@
 <template>
   <div class="projects-page">
-    <h1 class="font-serif font-medium text-4xl text-gray-800 text-center">
+    <h1 class="projects-page__title">
       Some of the things I do
       <div>
-        <Squiggles class="inline-block" />
+        <Squiggles class="squiggles" />
       </div>
     </h1>
 
-    <div class="projects max-w-2xl mx-auto mt-16 flex justify-between">
-      <div class="relative bg-gray-400 w-64 h-64">
-        <div class="project-description">
-          <h3 class="font-serif text-gray-900 uppercase tracking-wider">Chatbed</h3>
-          <p class="mt-2 text-sm text-gray-600">Quickly embed a chat window in your website.</p>
+    <div class="projects">
+      <div class="project">
+        <div class="project__description">
+          <h3 class="project__description-title">Chatbed</h3>
+          <p class="project__description-body">Quickly embed a chat window in your website.</p>
         </div>
       </div>
-      <div class="relative bg-gray-400 w-64 h-64">
-        <div class="project-description project-description--alternate">
-          <h3 class="font-serif text-gray-900 uppercase tracking-wider">Chatbed</h3>
-          <p class="mt-2 text-sm text-gray-600">Quickly embed a chat window in your website.</p>
+      <div class="project">
+        <div class="project__description project__description--alternate">
+          <h3 class="project__description-title">Chatbed</h3>
+          <p class="project__description-body">Quickly embed a chat window in your website.</p>
         </div>
       </div>
     </div>
@@ -40,7 +40,34 @@ export default {
   padding-top: $sp-24;
 }
 
-.project-description {
+.projects-page__title {
+  font-family: $serif;
+  font-weight: $fw-medium;
+  font-size: $fz-4xl;
+  color: $gray-800;
+  text-align: center;
+
+  .squiggles {
+    display: inline-block;
+  }
+}
+
+.projects {
+  max-width: $wsp-2xl;
+  margin: $sp-16 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project {
+  position: relative;
+  background: $gray-400;
+  width: $sp-64;
+  height: $sp-64;
+
+}
+
+.project__description {
   position: absolute;
   bottom: 100%;
   left: -90px;
@@ -56,4 +83,18 @@ export default {
     right: -90px;
   }
 }
+
+.project__description-title {
+  font-family: $serif;
+  color: $gray-900;
+  text-transform: uppercase;
+  letter-spacing: $tracking-wider;
+}
+
+.project__description-body {
+  margin-top: $sp-2;
+  font-size: $fz-sm;
+  color: $gray-600;
+}
+
 </style>

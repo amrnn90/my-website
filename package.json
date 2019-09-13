@@ -8,9 +8,7 @@
   },
   "dependencies": {
     "@juggle/resize-observer": "^2.3.0",
-    "element-resize-detector": "^1.1.15",
     "gridsome": "^0.6.0",
-    "gridsome-plugin-tailwindcss": "git://github.com/amrnn/gridsome-plugin-tailwindcss.git#support-preprocessors",
     "simplebar-vue": "^1.3.0-alpha.0",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",
