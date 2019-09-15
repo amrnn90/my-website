@@ -31,9 +31,9 @@ export default function (Vue, { router, head, isClient, appOptions }) {
     }
   });
 
-  Vue.prototype.$shared = new Vue({
+  Vue.prototype.$shared = (new Vue({
     data: {
       layout: 'default'
     }
-  });
+  })).data;
 }

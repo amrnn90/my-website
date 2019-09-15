@@ -53,6 +53,10 @@
     @include fl-gen(('padding-top', 'padding-bottom'), $max-v, $min-v, $max-w, $min-w);
 }
 
+@mixin p($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('padding',), $max-v, $min-v, $max-w, $min-w);
+}
+
 //margins 
 @mixin mr($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
     @include fl-gen(('margin-right',), $max-v, $min-v, $max-w, $min-w);
@@ -78,9 +82,18 @@
     @include fl-gen(('margin-top', 'margin-bottom'), $max-v, $min-v, $max-w, $min-w);
 }
 
+@mixin m($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('margin',), $max-v, $min-v, $max-w, $min-w);
+}
+
 // width
 @mixin w($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
     @include fl-gen(('width',), $max-v, $min-v, $max-w, $min-w);
+}
+
+// height
+@mixin h($max-v, $min-v, $max-w: $fl-max-w, $min-w: $fl-min-w) {
+    @include fl-gen(('height',), $max-v, $min-v, $max-w, $min-w);
 }
 
 // fonts

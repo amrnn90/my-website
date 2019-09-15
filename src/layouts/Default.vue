@@ -30,6 +30,7 @@
             class="layout__content simplebar-element"
             v-if="!isHome"
           >
+            <div class="layout__content-header-background"></div>
             <main>
               <router-view />
             </main>
@@ -88,6 +89,16 @@ export default {
   },
   destroyed() {
     this.ro.disconnect();
+  },
+  metaInfo() {
+    return {
+      title: null,
+      titleTemplate: titleChunk => {
+        const siteName = this.$static.metaData.siteName;
+        // If undefined or blank then we don't need the hyphen
+        return titleChunk ? `${titleChunk} - ${siteName}` : siteName;
+      }
+    };
   }
 };
 </script>
@@ -132,13 +143,28 @@ export default {
   right: 0;
   display: flex;
   justify-content: space-between;
-  @include py($sp-10, $sp-5);
-  @include px($sp-16, $sp-8);
+  align-items: center;
+  @include h(5rem, 3.4rem);
+  @include px($sp-16 - $sp-4, $sp-6);
+
+  @include md-up($screen-sm) {
+    top: $sp-4;
+    left: $sp-4;
+    right: $sp-4;
+  }
+
+  pointer-events: none;
+
+  .logo,
+  .nav-toggle,
+  a {
+    pointer-events: auto;
+  }
 }
 
 .logo,
 .nav-toggle {
-  @include w($sp-16, $sp-10);
+  @include w(3.2rem, $sp-10);
   z-index: 1000;
   position: relative;
   cursor: pointer;
@@ -166,11 +192,14 @@ export default {
   transform: translate3d(0, 0, 0);
   left: 100%;
   font-size: $fz-xl;
+  font-weight: $fw-black;
+  color: $gray-300;
+  letter-spacing: $tracking-wide;
   width: 100%;
 
   @include md-up($screen-md) {
     @include pr($sp-16, $sp-8);
-    @include fz($fz-lg, $fz-base, 1200px, $screen-md);
+    @include fz($fz-base, $fz-base, 1200px, $screen-md);
     justify-content: flex-end;
     text-align: right;
     width: 17vw;
@@ -180,9 +209,7 @@ export default {
 .layout__menu-item {
   display: block;
   text-transform: uppercase;
-  color: $gray-300;
-  letter-spacing: $tracking-widest;
-  margin: $sp-8 0;
+  margin: $sp-12 0;
 }
 
 .layout__content-wrapper {
@@ -207,7 +234,7 @@ export default {
   text-transform: uppercase;
   letter-spacing: $tracking-widest;
   text-align: center;
-  @include fz($fz-7xl, $fz-5xl);
+  @include fz($fz-6xl, $fz-5xl);
 }
 
 .layout__subheading {
@@ -234,6 +261,17 @@ export default {
     margin: $sp-4;
     height: calc(100% - #{$sp-4 * 2}) !important;
   }
+}
+
+.layout__content-header-background {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 200px;
+  background: rgba(white, .95);
+  // @include h($sp-24, $sp-16);
+  @include h(5rem, 3.4rem);
 }
 
 .open-nav {
