@@ -1,13 +1,65 @@
+@import './preflight';
 @import './abstract';
 
 .simplebar-element {
 	height: 100%;
 
 	.simplebar-scrollbar {
-			width: 5px;
-			&::before {
-			background: linear-gradient(to top, #d53f8c, #553c9a);
-			opacity: 0.7 !important;
-			}
+		width: 5px;
+		&::before {
+
+		background: $gray-700;
+		// background: linear-gradient(to bottom, #E51862,  #781CB0);
+		opacity: 0.5 !important;
+		}
+	}
+}
+
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: $gray-200;
+	border: 2px solid $gray-300;
+	border-radius: $rounded-default;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: $fw-semibold;
+	font-size: $fz-sm;
+	@include py($sp-4, $sp-3);
+	@include px($sp-8, $sp-6);
+	@include fz($fz-sm, $fz-xs);
+  
+	&--primary {
+	  background: $primary-gradient;
+	  border: rgba(white, 0);
+		box-shadow: $shadow-2xl;
+		transition: all .2s ease-in-out;
+
+		&:hover {
+			// transform: translate3d(0, -10px, 0);
+			transform: scale3d(1.07, 1.07, 1);
+			box-shadow: $shadow-default;
+		}
+	}
+  
+	&--secondary {
+	  color: $gray-500;
+		border-color: $gray-500;
+		transition: all .2s ease-in-out;
+
+		&:hover {
+			color: $gray-200;
+			border-color: $gray-200;
+		}
+	}
+}
+
+a:not([class]) {
+	color: lighten(#E51862, 11%);
+	transition: color .2s ease-in-out;
+	&:hover {
+		color: #E51862;
 	}
 }

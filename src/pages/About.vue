@@ -1,50 +1,54 @@
 <template>
-  <div class="aboutme-page">
-    <div class="aboutme-intro">
-      <img src="https://i.pravatar.cc/150" alt="Amr Noman" class="aboutme-intro__photo" />
-      <h2 class="aboutme-intro__heading">HELLO, I’M AMR NOMAN</h2>
-      <p
-        class="aboutme-intro__body"
-      >A computer science graduate who has a passion for fullstack web development and learning new things everyday, I enjoy working on projects using modern technologies.</p>
-    </div>
+  <route-wrapper>
+    <div class="aboutme-page">
+      <div class="aboutme-intro">
+        <img src="https://i.pravatar.cc/150" alt="Amr Noman" class="aboutme-intro__photo" />
+        <h2 class="aboutme-intro__heading">HELLO, I’M AMR NOMAN</h2>
+        <p
+          class="aboutme-intro__body"
+        >A computer science graduate who has a passion for fullstack web development and learning new things everyday, I enjoy working on projects using modern technologies.</p>
+      </div>
 
-    <div class="aboutme-toolset">
-      <div class="aboutme-toolset__content">
-        <h3 class="aboutme-toolset__heading">MY USUAL TOOLSET</h3>
-        <p class="aboutme-toolset__body">
-          I have experience with a wide range of languages and frameworks both on the frontend and the backend, but my favorites right now are:
-          <a
-            href="https://laravel.com"
-            target="_blank"
-          >Laravel</a>,
-          <a href="https://vuejs.org
-  " target="_blank">Vue.js</a> and
-          <a href="https://gridsome.org/" target="_blank">Gridsome</a>.
-        </p>
+      <div class="aboutme-toolset">
+        <div class="aboutme-toolset__content">
+          <h3 class="aboutme-toolset__heading">MY USUAL TOOLSET</h3>
+          <p class="aboutme-toolset__body">
+            I have experience with a wide range of languages and frameworks both on the frontend and the backend, but my favorites right now are:
+            <a
+              href="https://laravel.com"
+              target="_blank"
+            >Laravel</a>,
+            <a href="https://vuejs.org
+    " target="_blank">Vue.js</a> and
+            <a href="https://gridsome.org/" target="_blank">Gridsome</a>.
+          </p>
+        </div>
+        <div class="aboutme-toolset__icons">
+          <LaravelLogo />
+          <VueLogo />
+          <GridsomeLogo />
+        </div>
       </div>
-      <div class="aboutme-toolset__icons">
-        <LaravelLogo />
-        <VueLogo />
-        <GridsomeLogo />
+      <div class="aboutme-contact">
+        <h3 class="aboutme-contact__heading">Have any questions?</h3>
+        <g-link to="/contact" class="btn btn--primary">Let's Chat</g-link>
       </div>
     </div>
-    <div class="aboutme-contact">
-      <h3 class="aboutme-contact__heading">Have any questions?</h3>
-      <g-link to="/contact" class="aboutme-contact__cta">Let's Chat</g-link>
-    </div>
-  </div>
+  </route-wrapper>
 </template>
 
 <script>
 import LaravelLogo from "~/assets/svgs/LaravelLogo.svg";
 import VueLogo from "~/assets/svgs/VueLogo.svg";
 import GridsomeLogo from "~/assets/svgs/GridsomeLogo.svg";
+import RouteWrapper from "~/layouts/RouteWrapper";
 
 export default {
   components: {
     LaravelLogo,
     VueLogo,
-    GridsomeLogo
+    GridsomeLogo,
+    "route-wrapper": RouteWrapper
   },
   metaInfo: {
     title: "About Me"
@@ -169,16 +173,7 @@ export default {
   color: $gray-100;
   font-weight: $fw-normal;
   @include fz($fz-3xl, $fz-xl);
+  margin-bottom: $sp-6;
 }
 
-.aboutme-contact__cta {
-  color: $gray-100;
-  margin-top: $sp-6;
-  padding: $sp-2 $sp-12;
-  display: inline-block;
-  background: linear-gradient(to right, #cc2b5e, #753a88);
-  border-radius: 999px;
-  font-size: $fz-xl;
-  @include fz($fz-xl, $fz-base);
-}
 </style>

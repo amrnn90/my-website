@@ -9,9 +9,9 @@
         <Hamburger class="nav-toggle" @click.stop.prevent="toggleNav" role="button" />
         <div class="layout__menu">
           <nav>
-            <a href="/projects" class="layout__menu-item" @click="closeNavIfMobile">My Work</a>
-            <a href="/about" class="layout__menu-item" @click="closeNavIfMobile">About Me</a>
-            <a href="#" class="layout__menu-item" @click="closeNavIfMobile">Contact</a>
+            <g-link to="/projects" class="layout__menu-item" @click="closeNavIfMobile">My Work</g-link>
+            <g-link to="/about" class="layout__menu-item" @click="closeNavIfMobile">About Me</g-link>
+            <g-link to="/contact" class="layout__menu-item" @click="closeNavIfMobile">Contact</g-link>
           </nav>
         </div>
       </div>
@@ -21,20 +21,19 @@
       <div class="layout__content-wrapper-inner">
         <div>
           <h1 class="layout__heading">Amr Noman</h1>
-          <h2 class="layout__subheading">&lt;/ Fullstack Web Developer &gt;</h2>
+          <h2 class="layout__subheading">&lt;/ Fullstack Web Developer&nbsp;&gt;</h2>
+          <div class="layout__actions">
+            <g-link to="/projects" class="btn btn--primary">See My Work</g-link>
+            <g-link to="/contact" class="btn btn--secondary">Contact Me</g-link>
+          </div>
         </div>
 
         <transition name="slidedown">
-          <simplebar
-            data-simplebar-auto-hide="false"
-            class="layout__content simplebar-element"
-            v-if="!isHome"
-          >
-            <div class="layout__content-header-background"></div>
-            <main>
+          <main class="layout__content" v-if="!isHome">
+            <transition name="fade">
               <router-view />
-            </main>
-          </simplebar>
+            </transition>
+          </main>
         </transition>
       </div>
     </div>
@@ -45,17 +44,17 @@
 import ResizeObserver from "@juggle/resize-observer";
 import Logo from "~/assets/svgs/Logo.svg";
 import Hamburger from "~/assets/svgs/Hamburger.svg";
-import simplebar from "simplebar-vue";
 
 export default {
   components: {
     Logo,
-    Hamburger,
-    simplebar
+    Hamburger
   },
   data() {
     return {
-      navOpened: true
+      navOpened: true,
+      scrollPositions: {}
+      // remember: []
     };
   },
   methods: {
@@ -122,17 +121,18 @@ export default {
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
 
-  background: url("..//assets/Background.jpg");
-  background-position: center;
-  background-size: cover;
   &::before {
-    background: rgba(#120519, 0.72);
+    background: linear-gradient(rgba($gray-900, 0.82), rgba($gray-900, 0.82)),
+      url("..//assets/Background.jpg");
+    background-position: center;
+    background-size: cover;
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
     content: "";
+    animation: zoomin 20s ease-in-out infinite alternate;
   }
 }
 
@@ -178,7 +178,7 @@ export default {
 
 .layout__menu,
 .layout__content-wrapper {
-  transition: all 0.3s ease-in-out;
+  transition: padding 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .layout__menu {
@@ -208,8 +208,45 @@ export default {
 
 .layout__menu-item {
   display: block;
+  color: $gray-400;
   text-transform: uppercase;
   margin: $sp-12 0;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: -7px;
+    height: 3px;
+    background: linear-gradient(
+      to left,
+      #e51862,
+      rgba(#781cb0, 1) 50%,
+      rgba(#781cb0, 0) 100%
+    );
+    width: 0;
+    will-change: width;
+    transition: all 0.3s ease-in-out;
+
+    @include md-down($screen-md) {
+      bottom: -10px;
+      background: linear-gradient(to left, #e51862, rgba(#781cb0, 1));
+    }
+  }
+
+  &:hover,
+  &.active {
+    color: $gray-100;
+
+    &::after {
+      width: 95px;
+      @include md-down($screen-md) {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .layout__content-wrapper {
@@ -217,6 +254,7 @@ export default {
   width: 100%;
   padding-right: 0;
   z-index: 10;
+  will-change: padding-right;
 }
 
 .layout__content-wrapper-inner {
@@ -246,6 +284,32 @@ export default {
   @include fz($fz-lg, $fz-sm);
 }
 
+.layout__actions {
+  display: flex;
+  justify-content: center;
+  // margin-top: $sp-10;
+  transform: translateY($sp-16);
+
+  @include md-down(470px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    @include md-down(470px) {
+      width: 100%;
+      max-width: 180px;
+    }
+    &:first-child {
+      margin-right: $sp-12;
+      @include md-down(470px) {
+        margin-right: 0;
+        margin-bottom: $sp-4;
+      }
+    }
+  }
+}
+
 .layout__content {
   position: absolute;
   top: 0;
@@ -263,24 +327,13 @@ export default {
   }
 }
 
-.layout__content-header-background {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 200px;
-  background: rgba(white, .95);
-  // @include h($sp-24, $sp-16);
-  @include h(5rem, 3.4rem);
-}
-
 .open-nav {
   .layout__content-wrapper {
     transform: translate3d(-100%, 0, 0);
     position: relative;
     @include md-up($screen-md) {
-      transform: translate3d(0, 0, 0);
       padding-right: 17vw;
+      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -321,5 +374,33 @@ export default {
 .slidedown-enter-active,
 .slidedown-leave-active {
   transition: all 0.5s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-leave,
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+
+.fade-enter-active {
+  transition-delay: 0.5s;
+}
+
+@keyframes zoomin {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    transform: scale3d(4, 4, 1);
+  }
 }
 </style>

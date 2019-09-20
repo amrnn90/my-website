@@ -1,54 +1,57 @@
 <template>
-  <div class="projects-page">
-    <h1 class="projects-page__title">
-      Some of the things I do
-      <div>
-        <Squiggles class="squiggles" />
-      </div>
-    </h1>
-
-    <div class="projects">
-      <div class="project">
-        <div class="project__image"></div>
-
-        <div class="project__description">
-          <h3 class="project__description-title">Chatbed</h3>
-          <p class="project__description-body">Quickly embed a chat window in your website.</p>
+  <route-wrapper>
+    <div class="projects-page">
+      <h1 class="projects-page__title">
+        Some of the things I do
+        <div>
+          <Squiggles class="squiggles" />
         </div>
-      </div>
-      <div class="project project--alternate">
-        <div class="project__image"></div>
-
-        <div class="project__description">
-          <h3 class="project__description-title">Chatbed</h3>
-          <p class="project__description-body">Quickly embed a chat window in your website.</p>
+      </h1>
+  
+      <div class="projects">
+        <div class="project">
+          <div class="project__image"></div>
+  
+          <div class="project__description">
+            <h3 class="project__description-title">Chatbed</h3>
+            <p class="project__description-body">Quickly embed a chat window in your website.</p>
+          </div>
         </div>
-      </div>
-      <div class="project">
-        <div class="project__image"></div>
-
-        <div class="project__description">
-          <h3 class="project__description-title">Chatbed</h3>
-          <p class="project__description-body">Quickly embed a chat window in your website.</p>
+        <div class="project project--alternate">
+          <div class="project__image"></div>
+  
+          <div class="project__description">
+            <h3 class="project__description-title">Chatbed</h3>
+            <p class="project__description-body">Quickly embed a chat window in your website.</p>
+          </div>
         </div>
-      </div>
-      <div class="project project--alternate">
-        <div class="project__image"></div>
-
-        <div class="project__description">
-          <h3 class="project__description-title">Chatbed</h3>
-          <p class="project__description-body">Quickly embed a chat window in your website.</p>
+        <div class="project">
+          <div class="project__image"></div>
+  
+          <div class="project__description">
+            <h3 class="project__description-title">Chatbed</h3>
+            <p class="project__description-body">Quickly embed a chat window in your website.</p>
+          </div>
+        </div>
+        <div class="project project--alternate">
+          <div class="project__image"></div>
+  
+          <div class="project__description">
+            <h3 class="project__description-title">Chatbed</h3>
+            <p class="project__description-body">Quickly embed a chat window in your website.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </route-wrapper>
 </template>
 
 <script>
 import Squiggles from "~/assets/svgs/Squiggles.svg";
+import RouteWrapper from "~/layouts/RouteWrapper";
 
 export default {
-  components: { Squiggles },
+  components: { Squiggles, 'route-wrapper': RouteWrapper },
   metaInfo: {
     title: "My Work"
   }
