@@ -1,5 +1,8 @@
 <template>
-  <div class="layout" :class="{'open-nav': navOpened, 'is-home': isHome}">
+  <div
+    class="layout"
+    :class="{'open-nav': navOpened, 'close-nav': (navOpened !== null &&!navOpened), 'is-home': isHome}"
+  >
     <header class="layout__header">
       <g-link to="/">
         <Logo class="logo" @click="closeNavIfMobile" />
@@ -52,22 +55,28 @@ export default {
   },
   data() {
     return {
-      navOpened: true,
-      scrollPositions: {}
-      // remember: []
+      navOpened: null
     };
   },
   methods: {
     toggleNav() {
-      this.navOpened = !this.navOpened;
+      this.navOpened =
+        this.navOpened === null
+          ? this.isMobile()
+            ? true
+            : false
+          : !this.navOpened;
     },
     closeNav() {
-      this.navOpened = false;
+      this.navOpened = null;
     },
     closeNavIfMobile() {
-      if (document.body.clientWidth < 940) {
+      if (this.isMobile()) {
         this.closeNav();
       }
+    },
+    isMobile() {
+      return document.body.clientWidth < 940;
     }
   },
   computed: {
@@ -250,6 +259,7 @@ export default {
 }
 
 .layout__content-wrapper {
+  position: relative;
   height: 100vh;
   width: 100%;
   padding-right: 0;
@@ -327,28 +337,68 @@ export default {
   }
 }
 
+// NAV STATES
+
+@include md-up($screen-md) {
+  .layout__content-wrapper {
+    padding-right: 17vw;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .layout__menu {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
 .open-nav {
   .layout__content-wrapper {
     transform: translate3d(-100%, 0, 0);
-    position: relative;
-    @include md-up($screen-md) {
-      padding-right: 17vw;
-      transform: translate3d(0, 0, 0);
-    }
   }
 
   .layout__menu {
     transform: translate3d(-100%, 0, 0);
   }
 
+  .logo > .letter-a,
   .nav-toggle > * {
     fill: white !important;
   }
 
-  .logo > .letter-a {
-    fill: white !important;
+  @include md-up($screen-md) {
+    .layout__content-wrapper {
+      padding-right: 17vw;
+      transform: translate3d(0, 0, 0);
+    }
 
-    @include md-up($screen-md) {
+    .layout__menu {
+      transform: translate3d(-100%, 0, 0);
+    }
+
+    .logo > .letter-a {
+      fill: $gray-800 !important;
+    }
+  }
+}
+
+.close-nav {
+  .layout__content-wrapper {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .layout__menu {
+    transform: translate3d(0, 0, 0);
+  }
+
+  @include md-up($screen-md) {
+    .layout__content-wrapper {
+      padding-right: 0;
+    }
+
+    .layout__menu {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .nav-toggle > * {
       fill: $gray-800 !important;
     }
   }
@@ -360,6 +410,15 @@ export default {
     fill: white !important;
   }
 }
+
+.nav-toggle > * {
+  fill: $gray-800 !important;
+  @include md-up($screen-md) {
+    fill: white !important;
+  }
+}
+
+// END NAV STATES
 
 .slidedown-enter,
 .slidedown-leave-to {
