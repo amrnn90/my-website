@@ -3,7 +3,7 @@
     <div class="aboutme-page">
       <div class="aboutme-intro">
         <img src="https://i.pravatar.cc/150" alt="Amr Noman" class="aboutme-intro__photo" />
-        <h2 class="aboutme-intro__heading">HELLO, I’M AMR NOMAN</h2>
+        <h1 class="aboutme-intro__heading">HELLO, I’M AMR NOMAN</h1>
         <p
           class="aboutme-intro__body"
         >A computer science graduate who has a passion for fullstack web development and learning new things everyday, I enjoy working on projects using modern technologies.</p>
