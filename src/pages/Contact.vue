@@ -65,11 +65,23 @@
 
             <div class="contact-form__field">
               <icon-user class="icon" />
-              <input type="text" name="name" v-model="formData.name" placeholder="Your name" />
+              <input
+                type="text"
+                name="name"
+                v-model="formData.name"
+                placeholder="Your name"
+                required
+              />
             </div>
             <div class="contact-form__field">
               <icon-mail class="icon" />
-              <input type="email" name="email" v-model="formData.email" placeholder="Email" />
+              <input
+                type="email"
+                name="email"
+                v-model="formData.email"
+                placeholder="Email"
+                required
+              />
             </div>
 
             <div class="contact-form__field">
@@ -77,10 +89,11 @@
                 name="message"
                 v-model="formData.message"
                 placeholder="What do you have in mind?"
+                required
               ></textarea>
             </div>
 
-            <button type="submit">Send</button>
+            <button type="submit" class="btn btn--primary">Send</button>
           </form>
         </div>
       </div>
@@ -153,16 +166,19 @@ export default {
 }
 
 .contact-page {
-  @include py($sp-16, $sp-12);
+  // @include py($sp-12, $sp-12);
+  padding: $sp-4;
   @include px($sp-16 - $sp-4, $sp-6);
   max-width: $wsp-4xl;
   margin-left: auto;
   margin-right: auto;
 
   display: flex;
+  // align-items: center;
 }
 
 .contact-section {
+  padding-top: $sp-10;
   width: 40%;
 }
 
@@ -230,6 +246,60 @@ export default {
   margin-top: $sp-4;
   &:not(:first-child) {
     margin-left: $sp-4;
+  }
+}
+
+.contact-form {
+  background: white;
+  margin-left: $sp-12;
+  box-shadow: $shadow-lg;
+  padding: 80px;
+
+  .btn {
+    width: 100%;
+    margin-top: $sp-5;
+  }
+}
+
+.contact-form__field {
+  position: relative;
+  margin-bottom: $sp-4;
+  input,
+  textarea {
+    width: 100%;
+    border-radius: $rounded-default;
+    border: 1px solid $gray-300;
+    padding: $sp-4 $sp-4 $sp-4 $sp-12;
+    font-weight: $fw-medium;
+    font-size: $fz-sm;
+    transition: all 0.2s ease-in-out;
+    color: $gray-700;
+
+    &::placeholder {
+      color: $gray-400;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $gray-500;
+    }
+  }
+
+  textarea {
+    padding: $sp-4;
+    min-height: 95px;
+  }
+
+  .icon {
+    position: absolute;
+    left: $sp-3;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    pointer-events: none;
+    > * {
+      fill: $gray-600;
+    }
   }
 }
 </style>
