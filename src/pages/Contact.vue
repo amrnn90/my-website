@@ -124,7 +124,11 @@ export default {
     return {
       email: "",
       phone: "",
-      formData: {}
+      formData: {
+        name: '',
+        email: '', 
+        message: ''
+      }
     };
   },
   methods: {
