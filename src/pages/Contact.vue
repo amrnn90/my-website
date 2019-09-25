@@ -90,7 +90,7 @@
                 v-model="formData.message"
                 placeholder="What do you have in mind?"
                 required
-              ></textarea>
+              />
             </div>
 
             <button type="submit" class="btn btn--primary">Send</button>
@@ -125,9 +125,9 @@ export default {
       email: "",
       phone: "",
       formData: {
-        name: '',
-        email: '', 
-        message: ''
+        name: "",
+        email: "",
+        message: ""
       }
     };
   },
