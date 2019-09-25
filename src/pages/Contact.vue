@@ -1,73 +1,88 @@
 <template>
-  <route-wrapper>
-    <div class="contact-page">
-      <div class="contact-section">
-        <h1 class="contact-section__heading">Get in touch</h1>
-        <p
-          class="contact-section__intro"
-        >Feel free to reach out to me if you wish to talk about something.</p>
+  <route-wrapper headerBackground="#f7fafc">
+    <div class="contact-page-wrapper">
+      <div class="contact-page">
+        <div class="contact-section">
+          <h1 class="contact-section__heading">Get in touch</h1>
+          <p
+            class="contact-section__intro"
+          >Feel free to reach out to me if you wish to talk about something.</p>
 
-        <div class="contact-section__info">
-          <div class="contact-section__info-item">
-            <icon-mail class="contact-section__info-item-icon" />
-            <a :href="`mailto: ${email}`" class="contact-section__into-item-text">{{email}}</a>
+          <div class="contact-section__info">
+            <div class="contact-section__info-item">
+              <icon-mail class="icon contact-section__info-item-icon" />
+              <a :href="`mailto: ${email}`" class="contact-section__into-item-text">{{email}}</a>
+            </div>
+            <div class="contact-section__info-item">
+              <icon-call class="icon contact-section__info-item-icon" />
+              <a :href="`tel:${phone}`" class="contact-section__into-item-text">{{phone}}</a>
+            </div>
           </div>
-          <div class="contact-section__info-item">
-            <icon-call class="contact-section__info-item-icon" />
-            <a :href="`tel:${phone}`" class="contact-section__into-item-text">{{phone}}</a>
-          </div>
-        </div>
 
-        <div class="contact-section__links">
           <h3 class="contact-section__links-heading">Also find me here</h3>
-          <a href="https://github.com/amrnn90" class="contact-section__links-link" target="_blank">
-            <github />
-          </a>
-          <a href="https://twitter.com/amrnn90" class="contact-section__links-link" target="_blank">
-            <twitter />
-          </a>
-          <a
-            href="https://stackoverflow.com/users/4765497/amr-noman"
-            class="contact-section__links-link"
-            target="_blank"
-          >
-            <stackoverflow />
-          </a>
+
+          <div class="contact-section__links">
+            <a
+              href="https://github.com/amrnn90"
+              class="contact-section__links-link"
+              target="_blank"
+            >
+              <github />
+            </a>
+            <a
+              href="https://twitter.com/amrnn90"
+              class="contact-section__links-link"
+              target="_blank"
+            >
+              <twitter />
+            </a>
+            <a
+              href="https://stackoverflow.com/users/4765497/amr-noman"
+              class="contact-section__links-link"
+              target="_blank"
+            >
+              <stackoverflow />
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="contact-form">
-        <form
-          name="contact"
-          method="post"
-          v-on:submit.prevent="handleSubmit"
-          action="/success/"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p hidden>
-            <label>
-              Don’t fill this out:
-              <input name="bot-field" />
-            </label>
-          </p>
+        <div class="contact-form">
+          <form
+            name="contact"
+            method="post"
+            v-on:submit.prevent="handleSubmit"
+            action="/success/"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>
+                Don’t fill this out:
+                <input name="bot-field" />
+              </label>
+            </p>
 
-          <div class="contact-form__field">
-            <icon-user />
-            <input type="text" name="name" v-model="formData.name" placeholder="Your name" />
-          </div>
-          <div class="contact-form__field">
-            <icon-mail />
-            <input type="email" name="email" v-model="formData.email" placeholder="Email" />
-          </div>
+            <div class="contact-form__field">
+              <icon-user class="icon" />
+              <input type="text" name="name" v-model="formData.name" placeholder="Your name" />
+            </div>
+            <div class="contact-form__field">
+              <icon-mail class="icon" />
+              <input type="email" name="email" v-model="formData.email" placeholder="Email" />
+            </div>
 
-          <div class="contact-form__field">
-            <textarea name="message" v-model="formData.message" placeholder="What do you have in mind?"></textarea>
-          </div>
+            <div class="contact-form__field">
+              <textarea
+                name="message"
+                v-model="formData.message"
+                placeholder="What do you have in mind?"
+              ></textarea>
+            </div>
 
-          <button type="submit">Send</button>
-        </form>
+            <button type="submit">Send</button>
+          </form>
+        </div>
       </div>
     </div>
   </route-wrapper>
@@ -133,11 +148,88 @@ export default {
 <style lang="scss" scoped>
 @import "../styles/abstract";
 
+.contact-page-wrapper {
+  background: $gray-100;
+}
+
 .contact-page {
   @include py($sp-16, $sp-12);
   @include px($sp-16 - $sp-4, $sp-6);
   max-width: $wsp-4xl;
   margin-left: auto;
   margin-right: auto;
+
+  display: flex;
+}
+
+.contact-section {
+  width: 40%;
+}
+
+.contact-form {
+  width: 60%;
+}
+
+.contact-section__heading {
+  font-weight: $fw-black;
+  color: $gray-900;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
+  // @include fz($fz-3xl, $fz-xl);
+  @include fz($fz-2xl, $fz-xl);
+}
+
+.contact-section__intro {
+  font-size: $fz-sm;
+  font-weight: $fw-medium;
+  color: $gray-500;
+  margin-top: $sp-2;
+}
+
+.contact-section__info {
+  margin-top: $sp-10;
+}
+
+.contact-section__info-item {
+  display: flex;
+  align-items: center;
+  &:not(:last-child) {
+    margin-bottom: $sp-3;
+  }
+}
+
+.contact-section__info-item-icon {
+  width: $sp-8;
+  & > * {
+    fill: $gray-500;
+  }
+}
+
+.contact-section__into-item-text {
+  margin-left: $sp-4;
+  font-size: $fz-sm;
+  color: $gray-600;
+  font-weight: $fw-medium;
+}
+
+.contact-section__links-heading {
+  margin-top: $sp-24;
+  font-weight: $fw-bold;
+  color: $gray-600;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
+  font-size: $fz-sm;
+}
+
+.contact-section__links {
+  display: flex;
+  align-items: center;
+}
+
+.contact-section__links-link {
+  margin-top: $sp-4;
+  &:not(:first-child) {
+    margin-left: $sp-4;
+  }
 }
 </style>

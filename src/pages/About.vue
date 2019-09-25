@@ -3,10 +3,10 @@
     <div class="aboutme-page">
       <div class="aboutme-intro">
         <img src="https://i.pravatar.cc/150" alt="Amr Noman" class="aboutme-intro__photo" />
-        <h1 class="aboutme-intro__heading">HELLO, I’M AMR NOMAN</h1>
+        <h1 class="aboutme-intro__heading">Hello, I'm Amr Noman</h1>
         <p
           class="aboutme-intro__body"
-        >A computer science graduate who has a passion for fullstack web development and learning new things everyday, I enjoy working on projects using modern technologies.</p>
+        >A computer science graduate who is passionate about fullstack web development and learning new things everyday, I enjoy working on projects using modern technologies.</p>
       </div>
 
       <div class="aboutme-toolset">
@@ -92,8 +92,9 @@ export default {
 
 .aboutme-intro__heading {
   font-weight: $fw-black;
-  color: $gray-800;
+  color: $gray-900;
   letter-spacing: $tracking-wide;
+  text-transform: uppercase;
   @include fz($fz-3xl, $fz-xl);
 }
 

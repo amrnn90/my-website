@@ -1,6 +1,6 @@
 <template>
   <simplebar data-simplebar-auto-hide="false" class="route-wrapper simplebar-element">
-    <div class="layout__content-header-background"></div>
+    <div class="layout__content-header-background" :style="{background: headerBackground}"></div>
 
     <slot></slot>
   </simplebar>
@@ -16,6 +16,9 @@ let isPopstate = false;
 export default {
   components: {
     simplebar
+  },
+  props: {
+    headerBackground: {default: 'rgba(255, 255, 255, 0.95)'}
   },
   data() {
     return {
