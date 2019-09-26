@@ -32,11 +32,11 @@
 	@include fz($fz-sm, $fz-xs);
   
 	&--primary {
-	  background: $primary-gradient;
-	  border: rgba(white, 0);
+		background: $primary-gradient;
+		border: rgba(white, 0);
 		box-shadow: $shadow-2xl;
 		transition: all .2s ease-in-out;
-
+		
 		&:hover {
 			// transform: translate3d(0, -10px, 0);
 			transform: scale3d(1.07, 1.07, 1);
@@ -45,7 +45,7 @@
 	}
   
 	&--secondary {
-	  color: $gray-500;
+	    color: $gray-500;
 		border-color: $gray-500;
 		transition: all .2s ease-in-out;
 

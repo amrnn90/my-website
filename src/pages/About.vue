@@ -31,7 +31,7 @@
       </div>
       <div class="aboutme-contact">
         <h3 class="aboutme-contact__heading">Have any questions?</h3>
-        <g-link to="/contact" class="btn btn--primary">Let's Chat</g-link>
+        <g-link to="/contact" class="btn btn--secondary">Let's Chat</g-link>
       </div>
     </div>
   </route-wrapper>
@@ -162,7 +162,7 @@ export default {
 }
 
 .aboutme-contact {
-  background: $gray-900;
+  background: $gray-800;
   text-align: center;
   padding-right: $sp-4;
   padding-left: $sp-4;
