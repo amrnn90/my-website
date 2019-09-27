@@ -167,6 +167,7 @@ export default {
 
 .contact-page-wrapper {
   background: $gray-100;
+  // height: 100%;
 }
 
 .contact-page {

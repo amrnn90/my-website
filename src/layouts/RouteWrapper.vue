@@ -1,58 +1,53 @@
 <template>
   <div class="route-wrapper">
-    <div class="layout__content-header-background" :style="{background: headerBackground}"></div>
-    <simplebar data-simplebar-auto-hide="false" class="simplebar-element">
+    <!-- <div class="layout__content-header-background" :style="{background: headerBackground}"></div> -->
       <slot></slot>
-    </simplebar>
   </div>
 </template>
 
 <script>
-import simplebar from "simplebar-vue";
-
-const scrollPositions = {};
-let popstateEventBounded = false;
-let isPopstate = false;
+// const scrollPositions = {};
+// let popstateEventBounded = false;
+// let isPopstate = false;
 
 export default {
   components: {
-    simplebar
   },
   props: {
     headerBackground: { default: "rgba(255, 255, 255, 0.95)" }
   },
   data() {
     return {
-      currentPath: null
+      // currentPath: null
     };
   },
   mounted() {
-    this.currentPath = this.$route.path;
-    const scrollable = this.$el.querySelector(".simplebar-content-wrapper");
-    if (scrollable) {
-      setTimeout(() => {
-        scrollable.scrollTop = isPopstate
-          ? scrollPositions[this.$route.path]
-          : 0;
-        isPopstate = false;
-      }, 10);
-    }
+    // this.currentPath = this.$route.path;
+    // const scrollable = this.$el.querySelector(".simplebar-content-wrapper");
+    // if (scrollable) {
+    //   setTimeout(() => {
+    //     scrollable.scrollTop = isPopstate
+    //       ? scrollPositions[this.$route.path]
+    //       : 0;
+    //     isPopstate = false;
+    //   }, 10);
+    // }
 
-    if (!popstateEventBounded) {
-      window.onpopstate = () => {
-        if (scrollPositions[this.$route.path]) {
-          isPopstate = true;
-        }
-      };
-      popstateEventBounded = true;
-    }
+    // if (!popstateEventBounded) {
+    //   window.onpopstate = () => {
+    //     if (scrollPositions[this.$route.path]) {
+    //       isPopstate = true;
+    //     }
+    //   };
+    //   popstateEventBounded = true;
+    // }
   },
   destroyed() {
-    const scrollable = this.$el.querySelector(".simplebar-content-wrapper");
+    // const scrollable = this.$el.querySelector(".simplebar-content-wrapper");
 
-    if (scrollable) {
-      scrollPositions[this.currentPath] = scrollable.scrollTop;
-    }
+    // if (scrollable) {
+    //   scrollPositions[this.currentPath] = scrollable.scrollTop;
+    // }
   }
 };
 </script>
@@ -65,7 +60,8 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  // bottom: 0;
+  background: white;
   @include pt(5rem, 3.4rem);
 }
 
