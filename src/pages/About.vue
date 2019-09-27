@@ -166,6 +166,7 @@ export default {
   text-align: center;
   padding-right: $sp-4;
   padding-left: $sp-4;
+  border-radius: $rounded-default;
   @include mt($sp-24, $sp-16);
   @include py($sp-24, $sp-16);
 }

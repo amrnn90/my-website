@@ -1,9 +1,10 @@
 <template>
-  <simplebar data-simplebar-auto-hide="false" class="route-wrapper simplebar-element">
+  <div class="route-wrapper">
     <div class="layout__content-header-background" :style="{background: headerBackground}"></div>
-
-    <slot></slot>
-  </simplebar>
+    <simplebar data-simplebar-auto-hide="false" class="simplebar-element">
+      <slot></slot>
+    </simplebar>
+  </div>
 </template>
 
 <script>
@@ -18,7 +19,7 @@ export default {
     simplebar
   },
   props: {
-    headerBackground: {default: 'rgba(255, 255, 255, 0.95)'}
+    headerBackground: { default: "rgba(255, 255, 255, 0.95)" }
   },
   data() {
     return {
@@ -65,14 +66,15 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  @include pt(5rem, 3.4rem);
 }
 
 .layout__content-header-background {
-  position: sticky;
+  position: absolute;
   top: 0;
   z-index: 1000;
   width: 100%;
-  height: 200px;
+  // height: 200px;
   background: rgba(white, 0.95);
   // @include h($sp-24, $sp-16);
   @include h(5rem, 3.4rem);
