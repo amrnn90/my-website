@@ -13,6 +13,26 @@ export default function (Vue, { router, head, isClient, appOptions }) {
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
+
+  router.options.scrollBehavior = (to, from, savedPosition) => {
+    let pos = { x: 0, y: 0 };
+    /* route transition duration */
+    const delay = from.path === '/' ? 0 : 440;
+
+    if (savedPosition) {
+      pos = savedPosition;
+    } else if (to.hash) {
+      pos = {
+        selector: to.hash
+      };
+    }
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(pos);
+
+      }, delay);
+    });
+  };
   Vue.use(Fluid, {
     componentName: 'fl',
     fontSize: {

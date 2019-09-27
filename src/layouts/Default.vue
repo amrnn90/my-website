@@ -22,9 +22,9 @@
       </header>
     </div>
 
-    <div class="layout__content-wrapper">
+    <div class="layout__content-wrapper layout__content-wrapper--fixed">
       <div class="layout__content-wrapper-inner">
-        <div>
+        <div class="layout__fixed-content">
           <h1 class="layout__heading">Amr Noman</h1>
           <h2 class="layout__subheading">&lt;/ Fullstack Web Developer&nbsp;&gt;</h2>
           <div class="layout__actions">
@@ -32,16 +32,20 @@
             <g-link to="/contact" class="btn btn--secondary">Contact Me</g-link>
           </div>
         </div>
+      </div>
+    </div>
 
-        <transition name="slidedown">
-          <main class="layout__content" v-if="!isHome">
-            <transition name="fade">
+    <transition name="slidedown">
+      <div class="layout__content-wrapper" v-if="!isHome">
+        <div class="layout__content-wrapper-inner">
+          <main class="layout__content">
+            <transition name="fade" mode="out-in">
               <router-view />
             </transition>
           </main>
-        </transition>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -49,7 +53,7 @@
 import ResizeObserver from "@juggle/resize-observer";
 import Logo from "~/assets/svgs/Logo.svg";
 import Hamburger from "~/assets/svgs/Hamburger.svg";
-import OverlayScrollbars from "overlayscrollbars";
+// import OverlayScrollbars from "overlayscrollbars";
 
 export default {
   components: {
@@ -103,6 +107,14 @@ export default {
     // OverlayScrollbars(document.querySelectorAll("body"), {
     //   nativeScrollbarsOverlaid: { initialize: false }
     // });
+
+    /*
+     * Needed to prevent scroll issues in route transitions on popstate:
+     * https://dev.to/uwutrinket/fix-scroll-jump---vue-router-45ja
+     */
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
   },
   destroyed() {
     this.ro.disconnect();
@@ -132,14 +144,12 @@ export default {
 @import "../styles/abstract";
 
 html {
-  // overflow-y: scroll;
+  overflow-y: scroll;
   overflow-x: hidden;
-  margin-right: calc(-1 * (100vw - 100%));
+  // margin-right: calc(-1 * (100vw - 100%));
 }
 
 body {
-  // overflow-x:hidden;
-  // overflow-y: scroll;
   &::before {
     background: linear-gradient(rgba($gray-900, 0.82), rgba($gray-900, 0.82)),
       url("..//assets/Background.jpg");
@@ -160,6 +170,7 @@ body {
   color: $gray-800;
   font-family: $sans;
   -webkit-font-smoothing: antialiased;
+
   // overflow-x: hidden;
 }
 
@@ -182,7 +193,7 @@ body {
   align-items: center;
   @include h(5rem, 3.4rem);
   @include px($sp-16 - $sp-4, $sp-6);
-  margin-right: calc(-1 * (100vw - 100%));
+  // margin-right: calc(-1 * (100vw - 100%));
 
   @include md-up($screen-sm) {
     top: $sp-4;
@@ -294,6 +305,14 @@ body {
   padding-right: 0;
   z-index: 10;
   will-change: padding-right;
+  &--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+  }
 }
 
 .layout__content-wrapper-inner {
@@ -352,7 +371,7 @@ body {
 .layout__content {
   position: absolute;
   top: 0;
-  bottom: 0;
+  // bottom: 0;
   right: 0;
   left: 0;
   z-index: 1000;
@@ -360,6 +379,7 @@ body {
   margin: 0;
   background: white;
   // height: 1000px;
+  min-height: 100vh;
 
   @include md-up($screen-sm) {
     // margin: $sp-4;
@@ -479,11 +499,11 @@ body {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .fade-enter-active {
-  transition-delay: 0.5s;
+  // transition-delay: 0.5s;
 }
 
 @keyframes zoomin {
