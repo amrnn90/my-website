@@ -1,7 +1,6 @@
 // This is the main.js file. Import global CSS and scripts here.
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 import 'typeface-montserrat'
-// import 'overlayscrollbars/css/OverlayScrollbars.css';
 import '~/styles/main.scss'
 import Fluid from 'vue-fluid'
 import App from '~/components/App'
@@ -17,7 +16,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   router.options.scrollBehavior = (to, from, savedPosition) => {
     let pos = { x: 0, y: 0 };
     /* route transition duration */
-    const delay = from.path === '/' ? 0 : 440;
+    const delay = from.path === '/' ? 0 : 500;
 
     if (savedPosition) {
       pos = savedPosition;
@@ -33,6 +32,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
       }, delay);
     });
   };
+
   Vue.use(Fluid, {
     componentName: 'fl',
     fontSize: {

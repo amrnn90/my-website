@@ -1,6 +1,6 @@
 <template>
   <div class="route-wrapper">
-    <!-- <div class="layout__content-header-background" :style="{background: headerBackground}"></div> -->
+    <div class="layout__content-header-background" :style="{background: headerBackground}"></div>
       <slot></slot>
   </div>
 </template>
@@ -62,17 +62,17 @@ export default {
   right: 0;
   // bottom: 0;
   background: white;
-  @include pt(5rem, 3.4rem);
+  // @include pt(5rem, 3.4rem);
 }
 
-// .layout__content-header-background {
-//   position: absolute;
-//   top: 0;
-//   z-index: 1000;
-//   width: 100%;
-//   // height: 200px;
-//   background: rgba(white, 0.95);
-//   // @include h($sp-24, $sp-16);
-//   @include h(5rem, 3.4rem);
-// }
+.layout__content-header-background {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  // height: 200px;
+  background: rgba(white, 0.95);
+  // @include h($sp-24, $sp-16);
+  @include h(5rem, 3.4rem);
+}
 </style>
