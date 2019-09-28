@@ -23,27 +23,23 @@
     </div>
 
     <div class="layout__content-wrapper layout__content-wrapper--fixed">
-      <div class="layout__content-wrapper-inner">
-        <div class="layout__fixed-content">
-          <h1 class="layout__heading">Amr Noman</h1>
-          <h2 class="layout__subheading">&lt;/ Fullstack Web Developer&nbsp;&gt;</h2>
-          <div class="layout__actions">
-            <g-link to="/projects" class="btn btn--primary">See My Work</g-link>
-            <g-link to="/contact" class="btn btn--secondary">Contact Me</g-link>
-          </div>
+      <div class="layout__fixed-content">
+        <h1 class="layout__heading">Amr Noman</h1>
+        <h2 class="layout__subheading">&lt;/ Fullstack Web Developer&nbsp;&gt;</h2>
+        <div class="layout__actions">
+          <g-link to="/projects" class="btn btn--primary">See My Work</g-link>
+          <g-link to="/contact" class="btn btn--secondary">Contact Me</g-link>
         </div>
       </div>
     </div>
 
-    <transition name="slidedown">
+    <transition name="slide">
       <div class="layout__content-wrapper" v-if="!isHome">
-        <div class="layout__content-wrapper-inner">
-          <main class="layout__content">
-            <transition name="fade" mode="out-in">
-              <router-view />
-            </transition>
-          </main>
-        </div>
+        <main class="layout__content">
+          <transition name="fade" mode="out-in">
+            <router-view />
+          </transition>
+        </main>
       </div>
     </transition>
   </div>
@@ -53,7 +49,6 @@
 import ResizeObserver from "@juggle/resize-observer";
 import Logo from "~/assets/svgs/Logo.svg";
 import Hamburger from "~/assets/svgs/Hamburger.svg";
-// import OverlayScrollbars from "overlayscrollbars";
 
 export default {
   components: {
@@ -67,7 +62,6 @@ export default {
   },
   methods: {
     toggleNav() {
-      console.log(this.navOpened);
       this.navOpened =
         this.navOpened === null
           ? this.isMobile()
@@ -103,10 +97,6 @@ export default {
   mounted() {
     this.ro = new ResizeObserver(this.closeNavIfMobile);
     this.ro.observe(document.body);
-
-    // OverlayScrollbars(document.querySelectorAll("body"), {
-    //   nativeScrollbarsOverlaid: { initialize: false }
-    // });
 
     /*
      * Needed to prevent scroll issues in route transitions on popstate:
@@ -144,9 +134,9 @@ export default {
 @import "../styles/abstract";
 
 html {
-  overflow-y: scroll;
+  // overflow-y: scroll;
   overflow-x: hidden;
-  // margin-right: calc(-1 * (100vw - 100%));
+  margin-right: calc(-1 * (100vw - 100%));
 }
 
 body {
@@ -170,8 +160,6 @@ body {
   color: $gray-800;
   font-family: $sans;
   -webkit-font-smoothing: antialiased;
-
-  // overflow-x: hidden;
 }
 
 .layout__fixed {
@@ -193,7 +181,7 @@ body {
   align-items: center;
   @include h(5rem, 3.4rem);
   @include px($sp-16 - $sp-4, $sp-6);
-  // margin-right: calc(-1 * (100vw - 100%));
+  margin-right: calc(-1 * (100vw - 100%));
 
   @include md-up($screen-sm) {
     top: $sp-4;
@@ -300,27 +288,24 @@ body {
 
 .layout__content-wrapper {
   position: relative;
-  height: 100vh;
+  // height: 100vh;
   width: 100%;
   padding-right: 0;
   z-index: 10;
   will-change: padding-right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &--fixed {
     position: fixed;
+    width: unset;
+    margin-right: calc(-1 * (100vw - 100%));
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
   }
-}
-
-.layout__content-wrapper-inner {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
 }
 
 .layout__heading {
@@ -344,7 +329,6 @@ body {
 .layout__actions {
   display: flex;
   justify-content: center;
-  // margin-top: $sp-10;
   transform: translateY($sp-16);
 
   @include md-down(470px) {
@@ -368,22 +352,11 @@ body {
 }
 
 .layout__content {
-  position: absolute;
-  top: 0;
-  // bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1000;
+  background: white;
   border-radius: $rounded-sm;
   margin: 0;
-  background: white;
-  // height: 1000px;
   min-height: 100vh;
-
-  @include md-up($screen-sm) {
-    // margin: $sp-4;
-    // height: calc(100% - #{$sp-4 * 2}) !important;
-  }
+  width: 100%;
 }
 
 // NAV STATES
@@ -469,20 +442,20 @@ body {
 
 // END NAV STATES
 
-.slidedown-enter,
-.slidedown-leave-to {
+.slide-enter,
+.slide-leave-to {
   opacity: 0;
   transform: translate3d(-50px, 0, 0) !important;
 }
 
-.slidedown-leave,
-.slidedown-enter-to {
+.slide-leave,
+.slide-enter-to {
   opacity: 1;
   transform: translate3d(0, 0, 0) !important;
 }
 
-.slidedown-enter-active,
-.slidedown-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: all 0.3s ease-in-out;
 }
 
@@ -499,15 +472,11 @@ body {
 }
 
 .fade-enter-active {
-  transition: opacity .3s ease-in-out, transform .4s ease-in-out;
+  transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;
 }
 
 .fade-leave-active {
-  transition: opacity 0.3s ease-in-out, transform .4s ease-in-out;
-}
-
-.fade-enter-active {
-  // transition-delay: 0.5s;
+  transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;
 }
 
 @keyframes zoomin {
