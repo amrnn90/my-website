@@ -7,35 +7,43 @@
           <Squiggles class="squiggles" />
         </div>
       </h1>
-  
+
       <div class="projects">
         <div class="project">
-          <div class="project__image"></div>
-  
+          <div class="project__image">
+            <!-- <img src="https://picsum.photos/400/400" alt=""> -->
+          </div>
+
           <div class="project__description">
             <h3 class="project__description-title">Chatbed</h3>
             <p class="project__description-body">Quickly embed a chat window in your website.</p>
           </div>
         </div>
         <div class="project project--alternate">
-          <div class="project__image"></div>
-  
+          <div class="project__image">
+            <!-- <img src="https://picsum.photos/200/300" alt=""> -->
+          </div>
+
           <div class="project__description">
             <h3 class="project__description-title">Chatbed</h3>
             <p class="project__description-body">Quickly embed a chat window in your website.</p>
           </div>
         </div>
         <div class="project">
-          <div class="project__image"></div>
-  
+          <div class="project__image">
+            <!-- <img src="https://picsum.photos/200/300" alt=""> -->
+          </div>
+
           <div class="project__description">
             <h3 class="project__description-title">Chatbed</h3>
             <p class="project__description-body">Quickly embed a chat window in your website.</p>
           </div>
         </div>
         <div class="project project--alternate">
-          <div class="project__image"></div>
-  
+          <div class="project__image">
+            <!-- <img src="https://picsum.photos/200/300" alt=""> -->
+          </div>
+
           <div class="project__description">
             <h3 class="project__description-title">Chatbed</h3>
             <p class="project__description-body">Quickly embed a chat window in your website.</p>
@@ -51,7 +59,7 @@ import Squiggles from "~/assets/svgs/Squiggles.svg";
 import RouteWrapper from "~/layouts/RouteWrapper";
 
 export default {
-  components: { Squiggles, 'route-wrapper': RouteWrapper },
+  components: { Squiggles, "route-wrapper": RouteWrapper },
   metaInfo: {
     title: "My Work"
   }
@@ -108,6 +116,8 @@ export default {
     .project__description {
       left: 30px;
       right: -90px;
+      bottom: 0;
+      top: unset;
     }
   }
 
@@ -125,17 +135,21 @@ export default {
 
 .project__description {
   position: absolute;
-  bottom: 100%;
+  top: 0;
   left: -90px;
   right: 30px;
-  transform: translate3d(0, 50%, 0);
-  background: white;
-  @include p($sp-6, $sp-4);
+  // transform: translate3d(0, 50%, 0);
+  background: rgba(white, .9);
+  padding: $sp-2;
+  @include px($sp-6, $sp-4);
 
   @include md-down(790px) {
     left: 10px !important;
     right: 10px !important;
-    // padding:
+    top: unset !important;
+    bottom: 100% !important;
+    @include p($sp-6, $sp-4);
+    transform: translate3d(0, 50%, 0);
   }
 }
 

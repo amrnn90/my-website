@@ -57,24 +57,30 @@ a:not([class]) {
 
 html {
 	scrollbar-width: inherit;
-	scrollbar-color: $gray-900 $gray-800;
+	scrollbar-color: $gray-900 $gray-700;
 	* {
 		scrollbar-width: initial;
 		scrollbar-color: initial;
 	}
 }
 
-html::-webkit-scrollbar {
-	width: 10px;
-	// height: 7px;
+html, textarea {
+	&::-webkit-scrollbar {
+		width: 10px;
+		// height: 7px;
+	}
 }
 
-html::-webkit-scrollbar-thumb  {
-	background-color: $gray-900;
-	// border-radius: 10px;
+html, textarea {
+	&::-webkit-scrollbar-thumb  {
+		background-color: $gray-900;
+		// border-radius: 10px;
+	}
 }
 
-html::-webkit-scrollbar-track {
-	// height: 30px;
-	background-color: $gray-800;
+html, textarea {
+	&::-webkit-scrollbar-track {
+		// height: 30px;
+		background-color: $gray-700;
+	}
 }

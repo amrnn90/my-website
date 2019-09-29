@@ -433,7 +433,7 @@ body {
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
-  transform: translate3d(-50px, 0, 0) !important;
+  transform: translate3d(-80px, 0, 0) !important;
 }
 
 .slide-leave,
@@ -444,7 +444,7 @@ body {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.3s ease-in-out;
+  transition: all .5s  cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .fade-enter,

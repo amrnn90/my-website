@@ -9,43 +9,11 @@
               class="contact-section__intro"
             >Feel free to reach out to me if you wish to talk about something.</p>
 
-            <div class="contact-section__info mobile-hidden">
-              <div class="contact-section__info-item">
-                <icon-mail class="icon contact-section__info-item-icon" />
-                <a :href="`mailto: ${email}`" class="contact-section__into-item-text">{{email}}</a>
-              </div>
-              <div class="contact-section__info-item">
-                <icon-call class="icon contact-section__info-item-icon" />
-                <a :href="`tel:${phone}`" class="contact-section__into-item-text">{{phone}}</a>
-              </div>
-            </div>
+            <contact-info class="mobile-hidden" />
           </div>
 
           <div class="mobile-hidden">
-            <h3 class="contact-section__links-heading">Also find me here</h3>
-            <div class="contact-section__links">
-              <a
-                href="https://github.com/amrnn90"
-                class="contact-section__links-link"
-                target="_blank"
-              >
-                <github />
-              </a>
-              <a
-                href="https://twitter.com/amrnn90"
-                class="contact-section__links-link"
-                target="_blank"
-              >
-                <twitter />
-              </a>
-              <a
-                href="https://stackoverflow.com/users/4765497/amr-noman"
-                class="contact-section__links-link"
-                target="_blank"
-              >
-                <stackoverflow />
-              </a>
-            </div>
+            <contact-links />
           </div>
         </div>
 
@@ -100,43 +68,9 @@
           </form>
         </div>
         <div class="mobile-only">
-          <div class="contact-section__info">
-            <div class="contact-section__info-item">
-              <icon-mail class="icon contact-section__info-item-icon" />
-              <a :href="`mailto: ${email}`" class="contact-section__into-item-text">{{email}}</a>
-            </div>
-            <div class="contact-section__info-item">
-              <icon-call class="icon contact-section__info-item-icon" />
-              <a :href="`tel:${phone}`" class="contact-section__into-item-text">{{phone}}</a>
-            </div>
-          </div>
+          <contact-info />
 
-          <div>
-            <h3 class="contact-section__links-heading">Also find me here</h3>
-            <div class="contact-section__links">
-              <a
-                href="https://github.com/amrnn90"
-                class="contact-section__links-link"
-                target="_blank"
-              >
-                <github />
-              </a>
-              <a
-                href="https://twitter.com/amrnn90"
-                class="contact-section__links-link"
-                target="_blank"
-              >
-                <twitter />
-              </a>
-              <a
-                href="https://stackoverflow.com/users/4765497/amr-noman"
-                class="contact-section__links-link"
-                target="_blank"
-              >
-                <stackoverflow />
-              </a>
-            </div>
-          </div>
+          <contact-links />
         </div>
       </div>
     </div>
@@ -144,28 +78,23 @@
 </template>
 
 <script>
-import IconCall from "~/assets/svgs/icon-call.svg";
 import IconMail from "~/assets/svgs/icon-mail.svg";
 import IconUser from "~/assets/svgs/icon-user.svg";
-import Github from "~/assets/svgs/github.svg";
-import Twitter from "~/assets/svgs/twitter.svg";
-import Stackoverflow from "~/assets/svgs/stackoverflow.svg";
+
+import ContactInfo from '~/components/ContactInfo';
+import ContactLinks from '~/components/ContactLinks';
 import RouteWrapper from "~/layouts/RouteWrapper";
 
 export default {
   components: {
     "route-wrapper": RouteWrapper,
-    IconCall,
     IconMail,
     IconUser,
-    Github,
-    Stackoverflow,
-    Twitter
+    ContactInfo,
+    ContactLinks,
   },
   data() {
     return {
-      email: "",
-      phone: "",
       formData: {
         name: "",
         email: "",
@@ -194,10 +123,7 @@ export default {
         .catch(error => alert(error));
     }
   },
-  mounted() {
-    this.email = "amnnn90" + "@" + "gmail" + ".com";
-    this.phone = "(967)734-960-335";
-  },
+
   metaInfo: {
     title: "Contact"
   }
@@ -275,58 +201,8 @@ export default {
   margin-top: $sp-2;
 }
 
-.contact-section__info {
-  margin-top: $sp-10;
-  @include md-down(780px) {
-    @include mt($sp-24, $sp-16, 780px);
-  }
-}
 
-.contact-section__info-item {
-  display: flex;
-  align-items: center;
-  &:not(:last-child) {
-    margin-bottom: $sp-3;
-  }
-}
 
-.contact-section__info-item-icon {
-  width: $sp-8;
-  & > * {
-    fill: $gray-500;
-  }
-}
-
-.contact-section__into-item-text {
-  margin-left: $sp-4;
-  font-size: $fz-sm;
-  color: $gray-600;
-  font-weight: $fw-medium;
-}
-
-.contact-section__links-heading {
-  font-weight: $fw-bold;
-  color: $gray-600;
-  letter-spacing: $tracking-wide;
-  text-transform: uppercase;
-  font-size: $fz-sm;
-
-  @include md-down(780px) {
-    @include mt($sp-16, $sp-8, 780px);
-  }
-}
-
-.contact-section__links {
-  display: flex;
-  align-items: center;
-}
-
-.contact-section__links-link {
-  margin-top: $sp-4;
-  &:not(:first-child) {
-    margin-left: $sp-4;
-  }
-}
 
 .contact-form {
   background: white;
