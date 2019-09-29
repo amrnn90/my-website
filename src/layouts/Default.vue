@@ -142,7 +142,7 @@ html {
 body {
   &::before {
     background: linear-gradient(rgba($gray-900, 0.82), rgba($gray-900, 0.82)),
-      url("..//assets/Background.jpg");
+      url("../assets/images/Background.jpg");
     background-position: center;
     background-size: cover;
     position: fixed;

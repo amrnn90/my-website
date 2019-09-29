@@ -2,7 +2,8 @@
   <route-wrapper>
     <div class="aboutme-page">
       <div class="aboutme-intro">
-        <img src="https://i.pravatar.cc/150" alt="Amr Noman" class="aboutme-intro__photo" />
+        <g-image src="~/assets/images/Me.jpg" alt="Amr Noman" class="aboutme-intro__photo" />
+        <!-- <img src="https://i.pravatar.cc/150" alt="Amr Noman" class="aboutme-intro__photo" /> -->
         <h1 class="aboutme-intro__heading">Hello, I'm Amr Noman</h1>
         <p
           class="aboutme-intro__body"
@@ -88,6 +89,8 @@ export default {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   @include w(150px, 100px);
+  @include h(150px, 100px);
+  object-fit: cover;
 }
 
 .aboutme-intro__heading {
