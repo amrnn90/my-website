@@ -1,7 +1,7 @@
 <template>
   <div class="route-wrapper">
     <div class="layout__content-header-background" :style="{background: headerBackground}"></div>
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 
@@ -11,8 +11,7 @@
 // let isPopstate = false;
 
 export default {
-  components: {
-  },
+  components: {},
   props: {
     headerBackground: { default: "rgba(255, 255, 255, 0.95)" }
   },
@@ -32,7 +31,6 @@ export default {
     //     isPopstate = false;
     //   }, 10);
     // }
-
     // if (!popstateEventBounded) {
     //   window.onpopstate = () => {
     //     if (scrollPositions[this.$route.path]) {
@@ -44,7 +42,6 @@ export default {
   },
   destroyed() {
     // const scrollable = this.$el.querySelector(".simplebar-content-wrapper");
-
     // if (scrollable) {
     //   scrollPositions[this.currentPath] = scrollable.scrollTop;
     // }
@@ -63,6 +60,9 @@ export default {
   // bottom: 0;
   background: white;
   // @include pt(5rem, 3.4rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout__content-header-background {
@@ -72,7 +72,7 @@ export default {
   width: 100%;
   // height: 200px;
   background: rgba(white, 0.95);
-  // @include h($sp-24, $sp-16);
-  @include h(5rem, 3.4rem);
+  // @include h(5rem, 3.4rem);
+  @include h($sp-24, $sp-16);
 }
 </style>

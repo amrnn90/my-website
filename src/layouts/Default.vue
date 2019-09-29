@@ -179,23 +179,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @include h(5rem, 3.4rem);
-  @include px($sp-16 - $sp-4, $sp-6);
+  @include px($sp-16, $sp-6);
+  @include h($sp-24, $sp-16);
+
   margin-right: calc(-1 * (100vw - 100%));
 
-  @include md-up($screen-sm) {
-    top: $sp-4;
-    left: $sp-4;
-    right: $sp-4;
-  }
-
-  pointer-events: none;
-
-  .logo,
-  .nav-toggle,
-  a {
-    pointer-events: auto;
-  }
 }
 
 .logo,
@@ -235,7 +223,7 @@ body {
   height: 100vh;
 
   @include md-up($screen-md) {
-    @include pr($sp-16, $sp-8);
+    @include pr($sp-16, $sp-8, $screen-xl, $screen-md);
     @include fz($fz-base, $fz-base, 1200px, $screen-md);
     justify-content: flex-end;
     text-align: right;
