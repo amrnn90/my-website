@@ -224,12 +224,6 @@ export default {
   height: 100%;
   width: 100%;
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @include md-up(780px) {
-    @include mt(-$sp-24, -$sp-16);
-  }
 }
 
 .contact-page {
